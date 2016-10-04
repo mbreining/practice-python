@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Transform word1 into word2. At each step you must transform one word into another word.
@@ -7,7 +8,6 @@ You are not allowed to transform a word into a non-word.
 http://interactivepython.org/runestone/static/pythonds/Graphs/TheWordLadderProblem.html
 A good example of graph BFS.
 """
-
 from collections import defaultdict, deque
 from graph import Graph, Vertex
 
