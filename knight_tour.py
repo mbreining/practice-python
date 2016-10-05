@@ -1,10 +1,10 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 http://interactivepython.org/runestone/static/pythonds/Graphs/TheKnightsTourProblem.html
 A good example of DFS.
 """
-
 from graph import Graph, Vertex
 
 
