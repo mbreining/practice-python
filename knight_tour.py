@@ -71,6 +71,7 @@ def knight_tour(cur_path_len, path, to_visit, target_path_len):
 dimension = 5
 g = build_graph(dimension)
 solution_path = []
+# Start with the first cell (0, 0)
 knight_tour(0, solution_path, g.vertices[0], dimension*dimension)
 
 print
