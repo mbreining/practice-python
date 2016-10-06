@@ -7,6 +7,7 @@ where every cell has one character, find all possible words that can be formed
 by a sequence of adjacent characters.
 
 http://www.geeksforgeeks.org/boggle-find-possible-words-board-characters/
+https://www.toptal.com/java/the-trie-a-neglected-data-structure
 """
 
 
