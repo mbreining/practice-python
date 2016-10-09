@@ -21,8 +21,9 @@ def get_candidate_cell_values(i, j, board):
     row_values = set([board[i][y] for y in range(dimension) if y != j and board[i][y]])
     col_values = set([board[x][j] for x in range(dimension) if x != i and board[x][j]])
     block_values = set()
-    for x in range((i//3)*3, (i//3)*3+3):
-        for y in range((j//3)*3, (j//3)*3+3):
+    xbase, ybase = i - i%3, j - j%3
+    for x in range(xbase, xbase+3):
+        for y in range(ybase, ybase+3):
             if x == i and y == j or not board[x][y]:
                 continue
             block_values.add(board[x][y])
