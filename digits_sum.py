@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Given two integers 'n' and 'sum', find count of all n digit numbers with sum of digits
@@ -8,18 +9,15 @@ http://www.geeksforgeeks.org/count-of-n-digit-numbers-whose-sum-of-digits-equals
 """
 
 
-def digits_sum(n, target_sum, cur):
+def digits_sum(n, target_sum, start):
+    if target_sum == 0:
+        return 1
     if n == 0:
-        if target_sum == 0 and cur[0] != 0:
-            return 1
-        else:
-            return 0
+        return 0
     count = 0
-    for i in range(10):
+    for i in range(start, 10):
         if i <= target_sum:
-            cur.append(i)
-            count += digits_sum(n-1, target_sum-i, cur)
-            cur.pop()
+            count += digits_sum(n-1, target_sum-i, 0)
     return count
 
 
@@ -32,25 +30,22 @@ def recursive(n, target_sum):
     >>> recursive(3, 6)
     21
     """
-    print digits_sum(n, target_sum, [])
+    print digits_sum(n, target_sum, 1)
 
 
-def digits_sum_memo(n, target_sum, cur, memo):
+def digits_sum_memo(n, target_sum, start, memo):
+    if target_sum == 0:
+        return 1
     if n == 0:
-        if target_sum == 0 and cur[0] != 0:
-            return 1
-        else:
-            return 0
+        return 0
 
     if memo.get((n, target_sum)):
         return memo[(n, target_sum)]
 
     count = 0
-    for i in range(10):
+    for i in range(start, 10):
         if i <= target_sum:
-            cur.append(i)
-            count += digits_sum_memo(n-1, target_sum-i, cur, memo)
-            cur.pop()
+            count += digits_sum_memo(n-1, target_sum-i, 0, memo)
 
     memo[(n, target_sum)] = count
     return count
@@ -66,7 +61,7 @@ def dp(n, target_sum):
     21
     """
     memo = dict()
-    print digits_sum_memo(n, target_sum, [], memo)
+    print digits_sum_memo(n, target_sum, 1, memo)
 
 
 if __name__ == "__main__":
