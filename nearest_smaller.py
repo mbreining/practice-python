@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Given an array of integers, find the nearest smaller number for every element such that
@@ -8,11 +9,11 @@ http://www.geeksforgeeks.org/find-the-nearest-smaller-numbers-on-left-side-in-an
 """
 
 
-def solution1(arr):
+def solution(arr):
     """
-    >>> solution1([1, 6, 4, 10, 2, 5])
+    >>> solution([1, 6, 4, 10, 2, 5])
     [None, 1, 1, 4, 1, 2]
-    >>> solution1([1, 3, 0, 2, 5])
+    >>> solution([1, 3, 0, 2, 5])
     [None, 1, None, 0, 2]
     """
     nearest_smaller = [None]
@@ -25,29 +26,6 @@ def solution1(arr):
         else:
             nearest_smaller.append(None)
         stack.append(arr[i])
-    return nearest_smaller
-
-
-def solution2(arr):
-    """
-    >>> solution2([1, 6, 4, 10, 2, 5])
-    [None, 1, 1, 4, 1, 2]
-    >>> solution2([1, 3, 0, 2, 5])
-    [None, 1, None, 0, 2]
-    """
-    nearest_smaller = [None]
-    for i in range(1, len(arr)):
-        if arr[i] > arr[i-1]:
-            nearest_smaller.append(arr[i-1])
-        else:
-            j = len(nearest_smaller)-1
-            while j >= 0 and arr[j] and arr[j] > arr[i]:
-                j -= 1
-            if j < 0:
-                nearest_smaller.append(None)
-            else:
-                nearest_smaller.append(arr[j])
-
     return nearest_smaller
 
 
