@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 The awards committee had planned to give n research grants this year, out of a its total
@@ -18,8 +19,8 @@ total requested 430
 budget 240
 
 cumsum 10 40 90 160 280 430
-final grants 10 30 50 70 40 40
-so c = 40
+final grants 10 30 50 50 50 50
+so c = 50
 
 https://www.pramp.com/question/r1Kw0vwG6OhK9AEGAyWV
 """
@@ -28,7 +29,7 @@ https://www.pramp.com/question/r1Kw0vwG6OhK9AEGAyWV
 def solution(g, b):
     """
     >>> solution([10, 30, 50, 70, 120, 150], 240)
-    40
+    50
     >>> solution([10, 30, 50, 70, 120, 150], 1000)
     0
     """
@@ -41,12 +42,15 @@ def solution(g, b):
     if cumsum[len(g)-1] <= b:
         return 0
 
+    def capped_sum(i):
+        return cumsum[i] + (len(g)-i)*g[i]
+
     lo, hi = 0, len(g)-1
     while lo <= hi:
         mid = (lo+hi)//2
-        if cumsum[mid-1] <= b <= cumsum[mid]:
+        if capped_sum(mid-1) <= b <= capped_sum(mid):
             break
-        if cumsum[mid] <= b:
+        if capped_sum(mid) <= b:
             lo = mid+1
         else:
             hi = mid-1
