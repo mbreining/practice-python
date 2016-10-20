@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Given an array, find an element before which all elements are smaller than it, and after
