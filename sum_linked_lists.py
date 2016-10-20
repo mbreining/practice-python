@@ -21,8 +21,8 @@ def add_reversed(node1, node2, carry):
     q, r = divmod(sum, 10)
     node = Node(r)
     node.next = add_reversed(node1.next if node1 else None,
-                                 node2.next if node2 else None,
-                                 q)
+                             node2.next if node2 else None,
+                             q)
     return node
 
 
