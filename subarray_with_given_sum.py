@@ -10,31 +10,6 @@ Given an array of numbers, find subarray with sum to S.
 http://blog.gainlo.co/index.php/2016/06/01/subarray-with-given-sum/
 """
 
-def sol(A, S):
-    """
-    >>> sol([7, 0, 8, 1, 9, 2, 3, 4, 5], 12)
-    [1, 9, 2]
-    >>> sol([7, 0, 8, 1, 9, 2, 3, 4, 5], 7)
-    [7]
-    >>> sol([7, 0, 8, 1, 9, 2, 3, 4, 5], 39)
-    [7, 0, 8, 1, 9, 2, 3, 4, 5]
-    >>> sol([7, 0, 8, 1, 9, 2, 3, 4, 5], 5)
-    [2, 3]
-    >>> sol([7, 0, 8, 1, 9, 2, 3, 4, 5], 99)
-    -1
-    """
-    i, j = 0, 0
-    cursum = 0
-    while j < len(A):
-        cursum += A[j]
-        if cursum == S:
-            return A[i:j+1]
-        while cursum > S:
-            cursum -= A[i]
-            i += 1
-        j += 1
-    return -1
-
 
 def solution(arr, s):
     """
