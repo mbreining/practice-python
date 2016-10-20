@@ -50,7 +50,7 @@ def solution(text, k):
 
         # Check if we have a new longest substring
         if _count_uniques(chars) == k and (hi-lo+1) > len(res):
-                res = text[lo:hi+1]
+            res = text[lo:hi+1]
 
     return res
 
