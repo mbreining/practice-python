@@ -25,7 +25,7 @@ def solution(arr, s):
     >>> solution([7, 0, 8, 1, 9, 2, 3, 4, 5], 99)
     -1
     """
-    lo, hi = 0, 0
+    lo = 0
     cursum = 0
     for hi in range(len(arr)):
         cursum += arr[hi]
