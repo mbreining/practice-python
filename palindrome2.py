@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Check if a linked list is a palindrome, e.g. r->a->d->a->r.
