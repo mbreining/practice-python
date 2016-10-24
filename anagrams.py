@@ -8,8 +8,8 @@ Example: The string "coding interview questions" contains an anagram of the stri
 "weivretni".
 
 http://blog.gainlo.co/index.php/2016/04/08/if-a-string-contains-an-anagram-of-another-string/
+http://www.geeksforgeeks.org/anagram-substring-search-search-permutations/
 """
-from collections import defaultdict
 
 
 def solution(a, b):
