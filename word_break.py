@@ -6,8 +6,15 @@ Given an input string and a dictionary of words, find out if the input string
 can be segmented into a space-separated sequence of dictionary words.
 
 Follow-up: Return all possible space-separated sequence of words.
+
+Follow-up 2: You are given a scrambled input sentence. Each word is scrambled
+independently, and the results are concatenated. So:
+
+'hello to the world' might become: 'elhloothtedrowl'
+
+You have a dictionary with all words in it. Unscramble the sentence.
 """
-from collections import deque
+from collections import defaultdict, deque
 
 dictionary = ['hell', 'hello', 'on', 'obo', 'nobo', 'apple']
 
@@ -62,6 +69,42 @@ def followup(S):
     >>> followup(S)
     """
     break_word2(S, len(S), deque())
+
+
+dictionary2 = ['listen', 'silent', 'niels', 'hello', 'hole', 'on', 'apple', 'pale']
+
+
+def s(word):
+    return ''.join(sorted(word))
+
+
+def unscramble(S, i, s_dict, res):
+    if i == len(S):
+        return True
+    for j in range(i+1, len(S)):
+        k = s(S[i:j+1])
+        if not s_dict.get(k):
+            continue
+        res.append(s_dict[k][-1])  # pick the last word (or first or any word in the list)
+        if unscramble(S, j+1, s_dict, res):
+            return True
+        res.pop()
+    return False
+
+
+def followup2(S):
+    """
+    >>> S = 'nslietloehl'
+    >>> followup2(S)
+    ['silent', 'hello']
+    """
+    s_dict = defaultdict(list)
+    for w in dictionary2:
+        s_dict[s(w)].append(w)
+
+    res = []
+    unscramble(S, 0, s_dict, res)
+    return res
 
 
 if __name__ == '__main__':
