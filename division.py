@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Given two integers x and y, return x / y without using the '/' or '*' operators.
@@ -38,16 +39,9 @@ def divide(a, b):
     return q
 
 
-def multiply(a, b):
-    num = 0
-    for i in range(b):
-        num += a
-    return num
-
-
 def divide1(a, b):
     """
-    Slightly more efficient.
+    Inefficient.
 
     >>> divide1(5, 4)
     1
@@ -56,33 +50,6 @@ def divide1(a, b):
     >>> divide1(1, 3)
     0
     >>> divide1(9, 3)
-    3
-    """
-    q = a
-    while True:
-        q >>= 1
-        num = multiply(q, b)
-        if num <= a:
-            if a - b < num:
-                return q
-            if num <= a - b:
-                while num <= a - b:
-                    q += 1
-                    num = multiply(q, b)
-                return q
-
-
-def divide2(a, b):
-    """
-    Inefficient.
-
-    >>> divide2(5, 4)
-    1
-    >>> divide2(7, 2)
-    3
-    >>> divide2(1, 3)
-    0
-    >>> divide2(9, 3)
     3
     """
     sum, count = 0, 0
