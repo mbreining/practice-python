@@ -8,7 +8,7 @@ number: sum{ B[i]*(-2)^i for i = 0..N-1 }. The empty sequence represents 0.
 
 Note that such a representation is suitable for both positive and negative integers.
 
-Write a function that, give a 0-indexed A array of M bits, containing a sequence
+Write a function that, given a 0-indexed A array of M bits, containing a sequence
 representing some integer X, return the shortest sequence of bits representing -X.
 
 For example, given A = [1, 0, 0, 1, 1] (X=9), the solution should return [1, 1, 0, 1]
