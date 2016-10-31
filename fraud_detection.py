@@ -5,6 +5,8 @@
 You are given transactions, and a way to check if any 2 transactions are done
 by the same customer. If more than 50% of the transactions are done by the same
 person then it is considered fraud.
+
+Majority algorithm: https://www.youtube.com/watch?v=zOyOwDEF1Rc
 """
 
 
