@@ -20,7 +20,7 @@ def get_majority(transactions):
         if count == 0:
             candidate, count = transactions[i], 1
         else:
-            if transactions[i] == candidate:
+            if is_same_transaction(transactions[i], candidate):
                 count += 1
             else:
                 count -= 1
