@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Given a sorted array and a number x, find a pair in array whose sum is closest to x.
