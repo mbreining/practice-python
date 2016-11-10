@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# vim: foldlevel-0
+# vim: foldlevel=0
 
 """
 https://www.pramp.com/question/gKQ5zA52mySBOA5GALj9
