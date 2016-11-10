@@ -13,6 +13,10 @@ independently, and the results are concatenated. So:
 'hello to the world' might become: 'elhloothtedrowl'
 
 You have a dictionary with all words in it. Unscramble the sentence.
+
+Follow-up 3: https://repl.it/ETxc/1
+
+http://thenoisychannel.com/2011/08/08/retiring-a-great-interview-problem
 """
 from collections import defaultdict, deque
 
@@ -25,9 +29,9 @@ def break_word(S, j, memo):
             memo[j] = True
         else:
             for i in range(j):
-                word = S[i:j]
+                word = S[i:j]  # check suffix
                 if word in dictionary:
-                    if break_word(S, i, memo):
+                    if break_word(S, i, memo):  # check prefix recursively
                         memo[j] = True
                         break
             else:  # nobreak
@@ -37,6 +41,8 @@ def break_word(S, j, memo):
 
 def solution(S):
     """
+    Time complexity of recursive solution: O(2^n) - power set
+    Time complexity of dp solution: O(n^2)
     >>> S = 'hellonobo'
     >>> solution(S)
     True
@@ -78,18 +84,16 @@ def s(word):
     return ''.join(sorted(word))
 
 
-def unscramble(S, i, s_dict, res):
-    if i == len(S):
-        return True
-    for j in range(i+1, len(S)):
-        k = s(S[i:j+1])
-        if not s_dict.get(k):
-            continue
-        res.append(s_dict[k][-1])  # pick the last word (or first or any word in the list)
-        if unscramble(S, j+1, s_dict, res):
-            return True
-        res.pop()
-    return False
+def break_word3(S, j, dictionary, cur_phrase):
+    if j == 0:
+        print list(cur_phrase)
+    for i in range(j):
+        word = S[i:j]
+        word = s(word)
+        if dictionary.get(word):
+            cur_phrase.appendleft(dictionary[word][-1])  # arbitrarily pick last
+            break_word3(S, i, dictionary, cur_phrase)
+            cur_phrase.popleft()
 
 
 def followup2(S):
@@ -101,10 +105,7 @@ def followup2(S):
     s_dict = defaultdict(list)
     for w in dictionary2:
         s_dict[s(w)].append(w)
-
-    res = []
-    unscramble(S, 0, s_dict, res)
-    return res
+    break_word3(S, len(S), s_dict, deque())
 
 
 if __name__ == '__main__':
