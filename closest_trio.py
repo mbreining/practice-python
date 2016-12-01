@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Given three sorted arrays A, B and C, find three elements i, j and k from A, B and C
