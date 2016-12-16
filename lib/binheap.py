@@ -12,56 +12,42 @@ class BinHeap(object):
         self.data = [0]  # start at index 1
         self.size = 0
 
-    def _swap(self, i, j):
-        self.data[i], self.data[j] = self.data[j], self.data[i]
+    def _bubbleup(self, i):
+        while (i//2) > 0 and self.data[i] < self.data[i//2]:  # i//2 = parent
+            self.data[i//2], self.data[i] = self.data[i], self.data[i//2]
+            i //= 2
 
-    def _bubbleup(self, idx):
-        parent = idx//2
-        while parent > 0 and self.data[idx] < self.data[parent]:
-            self._swap(idx, parent)
-            idx, parent = parent, parent//2
-
-    def insert(self, elem):
+    def add(self, elem):
         self.data.append(elem)
         self.size += 1
         self._bubbleup(self.size)
 
-    def getmin(self):
+    def min(self):
         return self.data[1]
 
-    def _minchild(self, idx):
-        if 2*idx+1 > self.size:
-            if 2*idx > self.size:
-                return
+    def _bubbledown(self, i):
+        data = self.data
+        i = 1
+        while 2*i <= self.size or (2*i+1) <= self.size:
+            if 2*i+1 > self.size and data[i] > data[2*i]:
+                data[2*i], data[i] = data[i], data[2*i]
+                i = 2*i
+            elif data[i] > data[2*i] or data[i] > data[2*i]:
+                if data[2*i] < data[2*i+1]:
+                    data[2*i], data[i] = data[i], data[2*i]
+                    i = 2*i
+                else:
+                    data[2*i+1], data[i] = data[i], data[2*i+1]
+                    i = 2*i+1
             else:
-                return 2*idx
-        if self.data[2*idx] <= self.data[2*idx+1]:
-            return 2*idx
-        else:
-            return 2*idx+1
+                break
 
-    def _bubbledown(self, idx):
-        min_child = self._minchild(idx)
-        if not min_child:
-            return
-        if self.data[idx] > self.data[min_child]:
-            if self.data[2*idx] <= self.data[2*idx+1]:
-                self._swap(idx, 2*idx)
-                self._bubbledown(2*idx)
-            else:
-                self._swap(idx, 2*idx+1)
-                self._bubbledown(2*idx+1)
-
-    def delmin(self):
+    def pop(self):
         if self.size <= 0:
             return
-
-        min_elem = self.data[1]
-
+        root = self.data[1]
         self.data[1] = self.data[self.size]
         del self.data[self.size]
         self.size -= 1
-
         self._bubbledown(1)
-
-        return min_elem
+        return root
