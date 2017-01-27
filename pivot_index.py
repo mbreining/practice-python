@@ -54,9 +54,9 @@ def pivot_index2(arr):
                 pivot = i
                 maxsofar = arr[i]
         else:  # we have a pivot candidate
-            if arr[i] > arr[pivot]:
+            if arr[i] > maxsofar:
                 maxsofar = arr[i]
-            else:
+            if arr[i] <= arr[pivot]:
                 pivot = -1
     return pivot
 
