@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 Find the kth to last element of a singly linked list.
@@ -43,4 +44,3 @@ if __name__ == "__main__":
     _print(ll.head)
     print "Kth to last element (iterative): %d" % iterative(ll.head, 6)
     print "Kth to last element (recursive): %d" % recursive(ll.head, 6)
-    print "Kth to last element (recursive): %d" % solution(ll.head, 6)
