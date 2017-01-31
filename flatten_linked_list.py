@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: foldlevel=0
 
 """
 http://blog.gainlo.co/index.php/2016/06/12/flatten-a-linked-list/
