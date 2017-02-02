@@ -85,12 +85,14 @@ your_it = ([0,1,3,5,6])
 def warmup(it1, it2):
     """
     >>> list(warmup(iter([4, 1, 1, 3, 4]), iter([0, 0, 1, 4, 3, 5])))
-    [0, 1, 3, 4, 5]
+    [4, 1, 3, 0, 5]
     """
-    uniques = set()
+    seen = set()
     for element in chain(it1, it2):
-        uniques.add(element)
-    return iter(uniques)
+        if element not in seen:
+            seen.add(element)
+            yield element
+    return
 
 
 def exhaust(it, val):
@@ -134,20 +136,28 @@ def followup(it1, it2):
 def followup2(it1, it2):
     pit1 = PeekingIterator(it1)
     pit2 = PeekingIterator(it2)
-    while pit1.has_next() and pit2.has_next():
+    prev = None
+    while pit1.peek() and pit2.peek():
         if pit1.peek() <= pit2.peek():
-            yield pit1.next()
+            next = pit1.next()
         else:
-            yield pit2.next()
-    while pit1.has_next():
-        yield pit1.next()
+            next = pit2.next()
+        if not prev or next != prev:
+            yield next
+    while pit1.peek():
+        next = pit1.next()
+        if not prev or next != prev:
+            yield next
     while pit2.has_next():
-        yield pit2.next()
+        next = pit2.next()
+        if not prev or next != prev:
+            yield next
 
 
 class PeekingIterator(object):
     def __init__(self, iterator):
         self.iterator = iterator
+        self._next = None
         self._get_next()
 
     def _get_next(self, prev=None):
@@ -155,9 +165,6 @@ class PeekingIterator(object):
             self._next = next(self.iterator)
         except StopIteration:
             self._next = None
-
-    def has_next(self):
-        return True if self._next else False
 
     def next(self):
         res = None
