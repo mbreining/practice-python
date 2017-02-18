@@ -10,6 +10,8 @@ from math import sqrt
 
 def is_prime(n):
     """
+    >>> is_prime(2)
+    False
     >>> is_prime(4)
     False
     >>> is_prime(6)
@@ -27,6 +29,7 @@ def is_prime(n):
         if n % i == 0:
             return False
     return True
+
 
 if __name__ == "__main__":
     import doctest
