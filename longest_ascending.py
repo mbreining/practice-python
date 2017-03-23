@@ -4,6 +4,9 @@
 """
 Given a sequence of numbers, write a function to find the length of a longest
 increasing subsequence of the given sequence without the consecutive constraint.
+
+Same problem but with the consecutive constraint:
+http://blog.gainlo.co/index.php/2017/02/02/uber-interview-questions-longest-increasing-subarray/
 """
 
 
