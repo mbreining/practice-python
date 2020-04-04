@@ -20,7 +20,7 @@ def find_permutations(chars, cur):
 def find_subsets(chars, subset, j):
     ''' 2^n subsets '''
     if j < 0:
-        print "".join([chars[i] for i, v in enumerate(subset) if v])
+        print "".join([v for v, b in zip(chars, subset) if b])
         return
     for value in (True, False):
         subset[j] = value
